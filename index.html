@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ваши финансы ladosity</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="nav-menu">
+        <div class="brand">
+            <div class="logo-name">Ladosity</div>
+            <div id="version-text">beta-3.0</div>
+        </div>
+        <div class="nav-btns">
+            <div class="nav-btn nav-active" data-tab="tab_main">
+                <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="20" x2="18" y2="10"></line>
+                    <line x1="12" y1="20" x2="12" y2="4"></line>
+                    <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
+                Главная
+            </div>
+            <div class="nav-btn" data-tab="tab_score">
+                <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                    <line x1="1" y1="10" x2="23" y2="10"></line>
+                </svg>
+                Счета
+            </div>
+            <div class="nav-btn" data-tab="tab_history">
+                <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                История
+            </div>
+            <div class="nav-btn" data-tab="tab_settings">
+                <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path
+                        d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                    </path>
+                </svg>
+                Настройки
+            </div>
+        </div>
+    </nav>
+    <main>
+        <!-- ГЛАВНАЯ -->
+        <section class="tabs tab-active" id="tab_main">
+            <div class="header-section">
+                <h2 id="hello_word">Приветствую, </h2>
+                <div class="tabs-content month-tabs-scroll" id="month_tabs_main"></div>
+            </div>
+
+            <div id="okno-main">
+                <div id="okno-1">
+                    <div class="card capital-card" id="your-capiral">
+                        <span class="card-label">Ваш капитал</span>
+                        <div id="total_balance">0 ₽</div>
+                        <span id="win-word" class="badge"></span>
+                    </div>
+
+                    <div class="card" id="capital-chart">
+                        <div class="card-title">Динамика капитала</div>
+                        <div class="chart-wrapper">
+                            <canvas id="capitalChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="card" id="main-income-expense-widget">
+                        <div class="card-title">Финансы за период</div>
+                        <div class="summary-stats">
+                            <div class="stat-box">
+                                <span class="stat-label">Доходы</span>
+                                <span id="main_income_val" class="stat-value acc-positive">0 ₽</span>
+                            </div>
+                            <div class="stat-divider"></div>
+                            <div class="stat-box">
+                                <span class="stat-label">Расходы</span>
+                                <span id="main_expense_val" class="stat-value acc-negative">0 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-block" id="openBtnMain" data-tab="tab_history">+ Новая
+                        транзакция</button>
+                </div>
+
+                <div id="okno-2">
+                    <div class="card">
+                        <div class="card-title">Траты по категориям</div>
+                        <div class="chatr-cont">
+                            <div class="canvas-container"><canvas id="categoriesChart"></canvas></div>
+                            <div id="categoriesLegend" class="custom-chart-legend"></div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">Структура счетов</div>
+                        <div class="chatr-cont">
+                            <div class="canvas-container"><canvas id="accountsChart"></canvas></div>
+                            <div id="accountsLegend" class="custom-chart-legend"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- СЧЕТА -->
+        <section class="tabs" id="tab_score">
+            <div class="page-header">
+                <h2>Ваши счета</h2>
+                <button class="btn btn-primary" id="openScoreBtn">+ Добавить счет</button>
+            </div>
+            <div class="accounts-grid" id="accounts_container"></div>
+        </section>
+
+        <!-- ИСТОРИЯ -->
+        <section class="tabs" id="tab_history">
+            <div class="tabs-content month-tabs-scroll" id="month_tabs_container"></div>
+
+            <div class="filter-toolbar">
+                <div class="filter-group" id="type-filter-container">
+                    <div class="filter-btn filter-active" data-type="all">Все</div>
+                    <div class="filter-btn" data-type="expense">Расходы</div>
+                    <div class="filter-btn" data-type="income">Доходы</div>
+                </div>
+
+                <div class="toolbar-stats">
+                    <div class="stat-pill">
+                        <span>Доход:</span>
+                        <strong id="Income_Cont" class="acc-positive">0 ₽</strong>
+                    </div>
+                    <div class="stat-pill">
+                        <span>Расход:</span>
+                        <strong id="Expense_Cont" class="acc-negative">0 ₽</strong>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" id="openBtn">+ Новая транзакция</button>
+            </div>
+
+            <div class="card table-card" id="history_table">
+                <div id="history_container"></div>
+            </div>
+        </section>
+
+        <!-- НАСТРОЙКИ -->
+        <section class="tabs" id="tab_settings">
+            <h2 class="page-title">Настройки</h2>
+
+            <div class="settings-list">
+                <div class="card settings-item">
+                    <div class="settings-info">
+                        <label class="settings-label">Профиль пользователя</label>
+                        <p contenteditable="true" id="usernameedit" class="editable-username">Имя пользователя</p>
+                    </div>
+                </div>
+
+                <div class="card settings-item">
+                    <div class="settings-info">
+                        <label class="settings-label">Управление категориями</label>
+                        <span class="settings-desc">Настройка списка расходов и доходов</span>
+                    </div>
+                    <button class="btn btn-secondary" id="openCategoryBtn">Настроить</button>
+                </div>
+
+                <div class="card settings-item" id="setting-lang">
+                    <label class="settings-label">Язык интерфейса</label>
+                    <select id="lang-choice" class="input-field select-field">
+                        <option value="ru">Русский</option>
+                        <option value="eng">English</option>
+                    </select>
+                </div>
+
+                <div class="card settings-item" id="setting-hidden">
+                    <label class="settings-label">Скрытые транзакции в таблице</label>
+                    <select id="trans-choice" class="input-field select-field">
+                        <option value="show">Показывать</option>
+                        <option value="hidden">Скрыть</option>
+                    </select>
+                </div>
+
+                <div class="card settings-item" id="setting-archive">
+                    <label class="settings-label">Отображение архивных счетов</label>
+                    <select id="acc-choice" class="input-field select-field">
+                        <option value="show">Показывать</option>
+                        <option value="hidden">Скрыть</option>
+                    </select>
+                </div>
+
+                <div class="card settings-item danger-zone">
+                    <div class="settings-info">
+                        <label class="settings-label text-danger">Опасная зона</label>
+                        <span class="settings-desc">Полный сброс базы данных приложения</span>
+                    </div>
+                    <button id="button_delete" class="btn btn-danger">Очистить данные</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- POPUP: НОВАЯ ТРАНЗАКЦИЯ -->
+        <dialog id="myPopup" class="modal">
+            <div class="modal-header">
+                <h3>Новая транзакция</h3>
+                <button id="closeBtn" class="close-btn">&times;</button>
+            </div>
+            <form id="transactionForm" class="modal-body">
+                <div class="form-group">
+                    <label>Сумма</label>
+                    <input type="number" id="inp_amount" class="input-field" placeholder="0 ₽" required step="any">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Тип операции</label>
+                        <select id="inp_type" class="input-field select-field" required>
+                            <option value="Расход">Расход</option>
+                            <option value="Доход">Доход</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Дата</label>
+                        <input type="date" id="inp_date" class="input-field">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Категория</label>
+                        <select id="inp_category" class="input-field select-field"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Счёт</label>
+                        <select id="inp_account" class="input-field select-field" required></select>
+                    </div>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="inp_hidden">
+                        <span class="checkmark"></span>
+                        Сделать транзакцию скрытой
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label>Описание</label>
+                    <input type="text" id="inp_description" class="input-field" placeholder="Например: Обед в кафе">
+                </div>
+
+                <button type="submit" id="submitBtn" class="btn btn-primary btn-block">Добавить транзакцию</button>
+            </form>
+        </dialog>
+
+        <!-- POPUP: НОВЫЙ СЧЕТ -->
+        <dialog id="scorePopup" class="modal">
+            <div class="modal-header">
+                <h3>Новый счет</h3>
+                <button id="closeScoreBtn" class="close-btn">&times;</button>
+            </div>
+            <form id="scoreForm" class="modal-body">
+                <div class="form-group">
+                    <label>Название счета</label>
+                    <input type="text" id="inp_score_name" class="input-field" placeholder="Например: Т-Банк" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Тип счета</label>
+                    <select id="inp_score_type" class="input-field select-field" required>
+                        <option value="Карта">Карта</option>
+                        <option value="Кредитка">Кредитка</option>
+                        <option value="Кеш">Кеш</option>
+                        <option value="Вклад">Вклад</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Начальный баланс</label>
+                    <input type="number" id="inp_score_balance" class="input-field" placeholder="0" value="0"
+                        step="any">
+                </div>
+
+                <button type="submit" id="submitScoreBtn" class="btn btn-primary btn-block">Создать счет</button>
+            </form>
+        </dialog>
+
+        <!-- POPUP: РЕДАКТИРОВАНИЕ СЧЕТА -->
+        <dialog id="accountPopup" class="modal">
+            <div id="accountPopup_container" class="modal-body">
+                <div class="modal-header pd-0">
+                    <h3 contenteditable="true" class="can-edit editable-title" id="accPopup_name">Т-Банк</h3>
+                    <button id="accCloseBtn" class="close-btn">&times;</button>
+                </div>
+
+                <div class="balance-edit-block">
+                    <label>Баланс счета:</label>
+                    <div class="balance-input-row">
+                        <span contenteditable="true" class="can-edit editable-balance" id="accPopup_balance">0</span>
+                        <select id="accPopup_currency" class="input-field select-field currency-select">
+                            <option value="RUB">RUB</option>
+                            <option value="USD">USD</option>
+                            <option value="EUR">EUR</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="accPopup_visible">
+                        <span class="checkmark"></span>
+                        Учитывать в общем балансе
+                    </label>
+                </div>
+
+                <div class="transfer-box card-inner">
+                    <div class="transfer-title">Перевод на другой счет</div>
+                    <div class="transfer-row">
+                        <input type="number" id="accPopup_transfer_amount" class="input-field" placeholder="Сумма"
+                            min="1" step="any">
+                        <select id="accPopup_transfer_target" class="input-field select-field">
+                            <!-- Заполняется JS -->
+                        </select>
+                        <button id="accPopup_transfer_btn" class="btn btn-primary btn-sm">Перевести</button>
+                    </div>
+                </div>
+
+                <div class="quick-table-header">Последние операции</div>
+                <div id="quickTableCont"></div>
+
+                <div class="modal-actions">
+                    <button id="accPopup_save" class="btn btn-primary">Сохранить</button>
+                    <button id="accPopup_delete" class="btn btn-danger-outline">Удалить счет</button>
+                </div>
+            </div>
+        </dialog>
+
+        <!-- POPUP: КАТЕГОРИИ -->
+        <dialog id="categoryPopup" class="modal">
+            <div class="modal-header">
+                <h3>Менеджер категорий</h3>
+                <button id="closeCategoryBtn" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="category-type-tabs" class="filter-group">
+                    <div class="filter-btn filter-active" data-cat-type="expense">Расходы</div>
+                    <div class="filter-btn" data-cat-type="income">Доходы</div>
+                </div>
+
+                <form id="addCategoryForm" class="add-cat-row">
+                    <input type="text" id="inp_category_name" class="input-field" placeholder="Новая категория..."
+                        required>
+                    <button type="submit" class="btn btn-primary">+</button>
+                </form>
+
+                <div id="category_list_container" class="custom-scroll"></div>
+            </div>
+        </dialog>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js" type="module"></script>
+</body>
+
+</html>
