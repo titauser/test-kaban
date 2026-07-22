@@ -1,0 +1,1189 @@
+/* ============================================================
+   1. ПЕРЕМЕННЫЕ И СБРОС СТИЛЕЙ
+   ============================================================ */
+
+:root {
+    --bg-main: #0f172a;          /* Основной фон приложения */
+    --bg-side: #1e293b;          /* Фон боковой панели и модалок */
+    --bg-card: #1e293b;          /* Фон карточек */
+    --bg-card-hover: #334155;    /* Ховер карточек */
+    --bg-input: #0f172a;         /* Фон полей ввода */
+    
+    --accent: #00adb5;           /* Главный акцентный цвет */
+    --accent-hover: #00c2cb;     /* Ховер акцентных элементов */
+    
+    --text-main: #f8fafc;        /* Белый текст */
+    --text-muted: #94a3b8;       /* Серый вторичный текст */
+    
+    --green: #10b981;            /* Доходы/Плюс */
+    --red: #ef4444;              /* Расходы/Минус */
+    --border: rgba(255, 255, 255, 0.08); /* Тонкая рамка */
+    
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --shadow-main: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    display: flex;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Скроллбары */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-main);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--bg-card-hover);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
+/* ============================================================
+   2. НАВИГАЦИЯ (SIDEBAR)
+   ============================================================ */
+
+.nav-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 240px;
+    height: 100vh;
+    background-color: var(--bg-side);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    padding: 24px 16px;
+    z-index: 100;
+}
+
+.brand {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 36px;
+    padding: 0 8px;
+}
+
+.logo-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.03em;
+}
+
+#version-text {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.nav-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-muted);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.nav-btn:hover {
+    color: var(--text-main);
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+.nav-btn.nav-active {
+    color: var(--text-main);
+    background-color: var(--accent);
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0, 173, 181, 0.3);
+}
+
+.nav-icon {
+    font-size: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+
+/* ============================================================
+   3. ОСНОВНАЯ ОБЛАСТЬ (MAIN)
+   ============================================================ */
+
+main {
+    margin-left: 240px;
+    width: calc(100% - 240px); /* Четкое ограничение ширины с учетом бокового меню */
+    padding: 32px 40px;
+    max-width: 1400px;
+    box-sizing: border-box;
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.header-section h2, .page-header h2, .page-title {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+}
+
+/* Вкладки */
+.tabs {
+    display: none;
+}
+.tabs.tab-active {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Карточки */
+.card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    box-shadow: var(--shadow-main);
+}
+
+.card-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+/* Главная сетка */
+/* Исправление сетки на Главной */
+#okno-main {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 24px;
+}
+
+/* Добавьте это новое правило ниже: */
+#okno-1, #okno-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0; /* Разрешает колонкам сжиматься под ширину экрана */
+}
+
+#okno-1, #okno-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Ваш Капитал */
+.capital-card {
+    background: linear-gradient(135deg, var(--accent) 0%, #007a80 100%);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-label {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.9;
+}
+
+#total_balance {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+.badge {
+    align-self: flex-start;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Финансы за период виджет */
+.summary-stats {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 8px 0;
+}
+
+.stat-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.stat-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+}
+
+.stat-value {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 36px;
+    background-color: var(--border);
+}
+
+/* Графики */
+.chart-wrapper {
+    position: relative;
+    height: 140px;
+    width: 100%;
+}
+
+.chatr-cont {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 8px 0;
+}
+
+.canvas-container {
+    position: relative;
+    width: 220px;  
+    height: 220px; 
+    flex-shrink: 0;
+}
+
+/* ============================================================
+   4. КНОПКИ И ПОЛЯ ВВОДА (UI KIT)
+   ============================================================ */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    gap: 8px;
+}
+
+.btn-primary {
+    background-color: var(--accent);
+    color: #ffffff;
+}
+.btn-primary:hover {
+    background-color: var(--accent-hover);
+    box-shadow: 0 4px 12px rgba(0, 173, 181, 0.3);
+}
+
+.btn-secondary {
+    background-color: var(--bg-card-hover);
+    color: var(--text-main);
+    min-width: 180px;        /* Задаем минимальную комфортную ширину */
+    max-width: 220px; 
+}
+.btn-secondary:hover {
+    background-color: #475569;
+}
+
+.btn-danger {
+    background-color: var(--red);
+    color: #ffffff;
+    min-width: 180px;        /* Задаем минимальную комфортную ширину */
+    max-width: 220px; 
+}
+.btn-danger:hover {
+    background-color: #dc2626;
+}
+
+.btn-danger-outline {
+    background: transparent;
+    border: 1px solid var(--red);
+    color: var(--red);
+}
+.btn-danger-outline:hover {
+    background-color: rgba(239, 68, 68, 0.1);
+}
+
+.btn-block {
+    width: 100%;
+}
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+/* Поля ввода */
+.input-field {
+    width: 100%;
+    padding: 10px 14px;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-main) !important;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.input-field:focus {
+    border-color: var(--accent);
+}
+
+.select-field {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+}
+
+.select-field option {
+    background-color: var(--bg-side);
+    color: var(--text-main);
+}
+
+/* Кастомные Чекбоксы */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text-muted);
+    cursor: pointer;
+    user-select: none;
+}
+
+.checkbox-container input {
+    accent-color: var(--accent);
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+/* ============================================================
+   5. МЕСЯЦЫ И ФИЛЬТРЫ
+   ============================================================ */
+
+.month-tabs-scroll {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+}
+
+.months-element, .filter-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+
+.months-element:hover, .filter-btn:hover {
+    color: var(--text-main);
+    border-color: var(--accent);
+}
+
+.months-active, .filter-active {
+    background-color: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    font-weight: 600;
+}
+
+/* Родителю задаем растягивание элементов по высоте */
+.filter-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch; /* Растягивает все блоки на одну высоту */
+    gap: 16px;
+}
+
+.stat-pill {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    display: flex;
+    gap: 6px;
+}
+
+/* Плашкам счетчиков разрешаем растягиваться и центрируем контент */
+.stat-pill {
+    display: flex;
+    align-items: center; /* Центрирует текст и цифры по вертикали */
+    padding: 0 12px;     /* Убираем вертикальный padding, высотой управляет контейнер */
+    border-radius: 8px;  /* При необходимости подкорректируйте радиус */
+}
+
+/* Кнопке и селектам внутри контейнера задаем совпадение по высоте */
+.filter-toolbar select,
+.filter-toolbar .btn,
+.filter-toolbar input {
+    height: 100%;        /* Гарантирует одинаковую высоту элементов */
+    box-sizing: border-box;
+}
+.filter-group {
+    display: flex;
+    gap: 6px;
+}
+
+.toolbar-stats {
+    display: flex;
+    gap: 12px;
+}
+
+
+
+/* ============================================================
+   6. КАРТОЧКИ СЧЕТОВ (GRID)
+   ============================================================ */
+
+.accounts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.account-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 140px;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.account-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.account-type {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+}
+
+.account-name {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.account-balance {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.acc-positive { color: var(--green); }
+.acc-negative { color: var(--red); }
+
+.archived-card {
+    opacity: 0.5;
+    background-color: rgba(30, 41, 59, 0.5);
+}
+
+/* ============================================================
+   7. ТАБЛИЦА ИСТОРИИ
+   ============================================================ */
+
+.table-card {
+    padding: 0;
+    overflow: hidden;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th {
+    padding: 14px 16px;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background-color: rgba(0, 0, 0, 0.15);
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+}
+
+th:hover {
+    color: var(--text-main);
+}
+
+td {
+    padding: 14px 16px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-main);
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:hover td {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.remove_btn {
+    color: var(--text-muted);
+    font-size: 18px;
+    cursor: pointer;
+    text-align: center;
+    width: 40px;
+}
+.remove_btn:hover {
+    color: var(--red);
+}
+
+.hidden-transaction {
+    opacity: 0.4;
+}
+
+.table-edit-select, .table-edit-input {
+    background-color: var(--bg-input);
+    color: var(--text-main);
+    border: 1px solid var(--accent);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+/* ============================================================
+   8. ДИАЛОГОВЫЕ И МОДАЛЬНЫЕ ОКНА
+   ============================================================ */
+
+/* ============================================================
+   8. ДИАЛОГОВЫЕ И МОДАЛЬНЫЕ ОКНА (Исправленное центрирование)
+   ============================================================ */
+
+.modal {
+    /* 1. Центрирование на экране */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0; /* Сбрасываем дефолтные отступы браузера */
+
+    /* 2. Оформление и размеры */
+    background-color: var(--bg-side);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    color: var(--text-main);
+    
+    width: calc(100% - 32px); /* Чтобы не прилипало к краям на смартфонах */
+    max-width: 460px;
+    box-shadow: var(--shadow-main);
+    
+    /* 3. Ограничение высоты, если контента много */
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Затемнение фона за модальным окном */
+.modal::backdrop {
+    background-color: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(4px);
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.modal-header.pd-0 {
+    margin-bottom: 16px;
+}
+
+.modal-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 22px;
+    cursor: pointer;
+}
+.close-btn:hover {
+    color: var(--text-main);
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+/* Редактирование счета в попапе */
+.editable-title, .editable-balance {
+    border-bottom: 1px dashed var(--text-muted);
+    padding: 2px 4px;
+}
+.editable-title:focus, .editable-balance:focus {
+    outline: none;
+    border-color: var(--accent);
+    background-color: var(--bg-input);
+}
+
+.balance-edit-block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-color: var(--bg-main);
+    padding: 12px;
+    border-radius: var(--radius-sm);
+}
+
+.balance-input-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.currency-select {
+    width: auto;
+    font-size: 14px;
+}
+
+.card-inner {
+    background-color: var(--bg-main);
+    padding: 12px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+}
+
+.transfer-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 8px;
+}
+
+.transfer-row {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr auto;
+    gap: 8px;
+}
+
+.quick-table-header {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 8px;
+}
+
+#quickTableCont {
+    max-height: 160px;
+    overflow-y: auto;
+    background-color: var(--bg-main);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+}
+
+.modal-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+/* Менеджер категорий */
+.add-cat-row {
+    display: flex;
+    gap: 8px;
+}
+
+#category_list_container {
+    max-height: 240px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.category-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--bg-main);
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+}
+
+.category-name-input {
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    font-size: 14px;
+    width: 80%;
+}
+.category-name-input:focus {
+    outline: none;
+    color: var(--accent);
+}
+
+.cat-del-btn {
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 18px;
+}
+.cat-del-btn:hover {
+    color: var(--red);
+}
+
+/* ============================================================
+   9. НАСТРОЙКИ
+   ============================================================ */
+
+.settings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;        /* Занимает всю ширину родителя */
+    max-width: 100%;    /* Или можно вовсе убрать строчку max-width */
+}
+
+.settings-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+}
+
+.settings-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+/* Фиксированная и аккуратная ширина для выпадающих списков в настройках */
+.settings-item .select-field {
+    width: auto;             /* Отменяем растягивание на 100% */
+    min-width: 180px;        /* Задаем минимальную комфортную ширину */
+    max-width: 220px;        /* Ограничиваем максимальную ширину */
+    flex-shrink: 0;          /* Запрещаем сжимать элемент */
+}
+
+.settings-label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.settings-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.editable-username {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--accent);
+    cursor: pointer;
+}
+
+.danger-zone {
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+.text-danger {
+    color: var(--red);
+}
+
+/* ============================================================
+   10. ЛЕГЕНДА ГРАФИКОВ
+   ============================================================ */
+
+.custom-chart-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1;
+    max-height: 220px; /* Выравниваем по высоте с графиком */
+    overflow-y: auto;
+    padding-right: 6px; /* Зазор для аккуратного скроллбара */
+}
+
+/* Стилизация элементов легенды */
+.legend-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.legend-item:hover {
+    background-color: var(--bg-card-hover);
+    border-color: var(--accent);
+}
+
+.legend-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-main);
+    font-weight: 500;
+}
+
+.legend-color-box {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.legend-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.legend-value {
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.legend-percent {
+    color: var(--text-muted);
+    font-size: 11px;
+    background-color: var(--bg-main);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.legend-item.hidden-segment {
+    opacity: 0.3;
+}
+
+/* ============================================================
+   МОБИЛЬНАЯ АДАПТАЦИЯ И АДАПТИВНЫЙ ИНТЕРФЕЙС (MEDIA QUERIES)
+   ============================================================ */
+
+/* Планшеты и компактные экраны (до 1024px) */
+@media (max-width: 1024px) {
+    #okno-main {
+        grid-template-columns: 1fr;
+    }
+    
+    .chatr-cont {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .custom-chart-legend {
+        width: 100%;
+        max-height: none;
+    }
+}
+
+/* Смартфоны (до 768px) */
+@media (max-width: 768px) {
+    /* 1. Отступы и адаптация основного контейнера */
+    body {
+        /* Учитываем высоту нижнего меню + безопасную зону подбородка/полосы iOS */
+        padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px));
+    }
+
+    main {
+        margin-left: 0;
+        width: 100%;
+        padding: 16px 12px;
+    }
+
+    /* 2. Трансформация Sidebar в Нижнее меню (Bottom Navigation Bar) */
+    .nav-menu {
+        top: auto;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        /* Динамическая высота с учетом системной жестовой полосы iOS/Android */
+        height: calc(60px + env(safe-area-inset-bottom, 0px));
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-around;
+        padding: 6px 8px env(safe-area-inset-bottom, 0px) 8px;
+        border-right: none;
+        border-top: 1px solid var(--border);
+        background-color: var(--bg-side);
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+        z-index: 1000;
+    }
+
+    /* Скрываем брендинг в нижнем меню */
+    .brand {
+        display: none;
+    }
+
+    .nav-btns {
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-around;
+        gap: 0;
+    }
+
+    .nav-btn {
+        flex-direction: column;
+        gap: 3px;
+        padding: 6px 4px;
+        font-size: 10px;
+        border-radius: var(--radius-sm);
+        text-align: center;
+        /* Увеличение кликабельной области (Touch Target) */
+        min-height: 48px;
+        justify-content: center;
+        flex: 1;
+    }
+
+    .nav-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .nav-btn.nav-active {
+        box-shadow: none;
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    /* 3. Шапки страниц и действия */
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .page-header .btn {
+        width: 100%;
+    }
+
+    /* 4. Фильтры и панели управления (Строгая центровка текста в кнопках) */
+    .filter-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .filter-group {
+        display: flex;
+        width: 100%;
+        gap: 8px;
+        overflow-x: visible;
+    }
+
+    .filter-group .btn,
+    .filter-group .filter-btn,
+    .filter-btn {
+        display: flex;                 /* Превращаем кнопку во флекс-контейнер */
+        align-items: center;           /* Центрируем текст по вертикали */
+        justify-content: center;       /* Центрируем текст по горизонтали */
+        flex: 1;                       /* Равномерно распределяем на всю ширину */
+        width: 100%;
+        text-align: center;
+        min-height: 46px;              /* Комфортная высота для нажатия пальцем */
+        padding: 0 12px;
+        box-sizing: border-box;
+    }
+
+    /* Сбрасываем внутренние отступы у элементов внутри кнопок фильтров */
+    .filter-group .btn *,
+    .filter-group .filter-btn *,
+    .filter-btn * {
+        margin: 0;
+        padding: 0;
+        line-height: normal;
+    }
+
+    .toolbar-stats {
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    /* 5. Карточки, виджеты, Доходы и Расходы (Идеальная центровка) */
+    #total_balance {
+        font-size: 26px;
+    }
+
+    .summary-stats {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Помещаем Доходы и Расходы сеткой */
+        gap: 12px;
+        margin-top: 12px;
+    }
+
+    .stat-card, 
+    .income-card, 
+    .expense-card,
+    .stat-pill {
+        min-height: 80px; 
+        padding: 12px 16px; 
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Центрирование по вертикали */
+        align-items: center;     /* Центрирование по горизонтали */
+        border-radius: var(--radius-md);
+        flex: 1;
+        box-sizing: border-box;
+    }
+
+    /* Сброс лишних внешних отступов у текста внутри карточек доходов/расходов */
+    .stat-card *,
+    .income-card *,
+    .expense-card *,
+    .stat-pill * {
+        margin: 0;
+        padding: 0;
+        line-height: 1.2;
+    }
+
+    .stat-value {
+        font-size: 18px;
+        font-weight: 700;
+        margin-top: 6px !important;
+    }
+
+    .stat-label {
+        font-size: 12px;
+        opacity: 0.8;
+    }
+
+    .accounts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* 6. Таблица транзакций (Скролл по горизонтали) */
+    .table-card {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border-radius: var(--radius-md);
+    }
+
+    table {
+        min-width: 580px;
+    }
+
+    th, td {
+        padding: 10px 8px;
+        font-size: 12px;
+    }
+
+    /* 7. Настройки и профиль */
+    .settings-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .settings-item .select-field,
+    .settings-item .btn {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* 8. Модальные окна и защита от экранной клавиатуры */
+    .modal {
+        width: calc(100% - 24px);
+        max-height: 85vh;
+        overflow-y: auto;
+        padding: 18px 14px;
+        border-radius: var(--radius-md);
+    }
+
+    .form-row,
+    .transfer-row {
+        grid-template-columns: 1fr;
+    }
+}
