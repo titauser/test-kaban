@@ -488,8 +488,6 @@ main {
     gap: 12px;
 }
 
-
-
 /* ============================================================
    6. КАРТОЧКИ СЧЕТОВ (GRID)
    ============================================================ */
@@ -548,6 +546,7 @@ main {
    7. ТАБЛИЦА ИСТОРИИ
    ============================================================ */
 
+/* Выравнивание и красивое оформление заглушки при отсутствии транзакций */
 #transaction-non {
     text-align: center;
     padding: 40px 20px;
@@ -626,35 +625,27 @@ tr:hover td {
    8. ДИАЛОГОВЫЕ И МОДАЛЬНЫЕ ОКНА
    ============================================================ */
 
-/* ============================================================
-   8. ДИАЛОГОВЫЕ И МОДАЛЬНЫЕ ОКНА (Исправленное центрирование)
-   ============================================================ */
-
 .modal {
-    /* 1. Центрирование на экране */
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    margin: 0; /* Сбрасываем дефолтные отступы браузера */
+    margin: 0;
 
-    /* 2. Оформление и размеры */
     background-color: var(--bg-side);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     padding: 24px;
     color: var(--text-main);
     
-    width: calc(100% - 32px); /* Чтобы не прилипало к краям на смартфонах */
+    width: calc(100% - 32px);
     max-width: 460px;
     box-shadow: var(--shadow-main);
     
-    /* 3. Ограничение высоты, если контента много */
     max-height: 90vh;
     overflow-y: auto;
 }
 
-/* Затемнение фона за модальным окном */
 .modal::backdrop {
     background-color: rgba(15, 23, 42, 0.75);
     backdrop-filter: blur(4px);
@@ -711,7 +702,6 @@ tr:hover td {
     gap: 12px;
 }
 
-/* Редактирование счета в попапе */
 .editable-title, .editable-balance {
     border-bottom: 1px dashed var(--text-muted);
     padding: 2px 4px;
@@ -785,7 +775,6 @@ tr:hover td {
     margin-top: 8px;
 }
 
-/* Менеджер категорий */
 .add-cat-row {
     display: flex;
     gap: 8px;
@@ -837,8 +826,8 @@ tr:hover td {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    width: 100%;        /* Занимает всю ширину родителя */
-    max-width: 100%;    /* Или можно вовсе убрать строчку max-width */
+    width: 100%;
+    max-width: 100%;
 }
 
 .settings-item {
@@ -854,12 +843,11 @@ tr:hover td {
     gap: 2px;
 }
 
-/* Фиксированная и аккуратная ширина для выпадающих списков в настройках */
 .settings-item .select-field {
-    width: auto;             /* Отменяем растягивание на 100% */
-    min-width: 180px;        /* Задаем минимальную комфортную ширину */
-    max-width: 220px;        /* Ограничиваем максимальную ширину */
-    flex-shrink: 0;          /* Запрещаем сжимать элемент */
+    width: auto;
+    min-width: 180px;
+    max-width: 220px;
+    flex-shrink: 0;
 }
 
 .settings-label {
@@ -896,12 +884,11 @@ tr:hover td {
     flex-direction: column;
     gap: 8px;
     flex-grow: 1;
-    max-height: 220px; /* Выравниваем по высоте с графиком */
+    max-height: 220px;
     overflow-y: auto;
-    padding-right: 6px; /* Зазор для аккуратного скроллбара */
+    padding-right: 6px;
 }
 
-/* Стилизация элементов легенды */
 .legend-item {
     display: flex;
     align-items: center;
@@ -983,7 +970,6 @@ tr:hover td {
 @media (max-width: 768px) {
     /* 1. Отступы и адаптация основного контейнера */
     body {
-        /* Учитываем высоту нижнего меню + безопасную зону подбородка/полосы iOS */
         padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px));
     }
 
@@ -993,13 +979,12 @@ tr:hover td {
         padding: 16px 12px;
     }
 
-    /* 2. Трансформация Sidebar в Нижнее меню (Bottom Navigation Bar) */
+    /* 2. Нижнее меню (Bottom Navigation Bar) */
     .nav-menu {
         top: auto;
         bottom: 0;
         left: 0;
         width: 100%;
-        /* Динамическая высота с учетом системной жестовой полосы iOS/Android */
         height: calc(60px + env(safe-area-inset-bottom, 0px));
         flex-direction: row;
         align-items: flex-start;
@@ -1012,7 +997,6 @@ tr:hover td {
         z-index: 1000;
     }
 
-    /* Скрываем брендинг в нижнем меню */
     .brand {
         display: none;
     }
@@ -1031,7 +1015,6 @@ tr:hover td {
         font-size: 10px;
         border-radius: var(--radius-sm);
         text-align: center;
-        /* Увеличение кликабельной области (Touch Target) */
         min-height: 48px;
         justify-content: center;
         flex: 1;
@@ -1047,7 +1030,7 @@ tr:hover td {
         background-color: rgba(255, 255, 255, 0.05);
     }
 
-    /* 3. Шапки страниц и действия */
+    /* 3. Шапки страниц */
     .page-header {
         flex-direction: column;
         align-items: flex-start;
@@ -1058,7 +1041,7 @@ tr:hover td {
         width: 100%;
     }
 
-    /* 4. Фильтры и панели управления (Строгая центровка текста в кнопках) */
+    /* 4. Фильтры и панели управления */
     .filter-toolbar {
         flex-direction: column;
         align-items: stretch;
@@ -1075,18 +1058,17 @@ tr:hover td {
     .filter-group .btn,
     .filter-group .filter-btn,
     .filter-btn {
-        display: flex;                 /* Превращаем кнопку во флекс-контейнер */
-        align-items: center;           /* Центрируем текст по вертикали */
-        justify-content: center;       /* Центрируем текст по горизонтали */
-        flex: 1;                       /* Равномерно распределяем на всю ширину */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
         width: 100%;
         text-align: center;
-        min-height: 46px;              /* Комфортная высота для нажатия пальцем */
+        min-height: 46px;
         padding: 0 12px;
         box-sizing: border-box;
     }
 
-    /* Сбрасываем внутренние отступы у элементов внутри кнопок фильтров */
     .filter-group .btn *,
     .filter-group .filter-btn *,
     .filter-btn * {
@@ -1096,64 +1078,90 @@ tr:hover td {
     }
 
     .toolbar-stats {
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Две равные колонки */
+        gap: 10px;
         width: 100%;
     }
 
-    /* 5. Карточки, виджеты, Доходы и Расходы (Идеальная центровка) */
+        /* Каждая плашка — красивая карточка на всю колонку */
+    .stat-pill {
+        flex-direction: column;    /* Текст и сумма друг под другом */
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        padding: 14px 12px;        /* Увеличиваем внутренние отступы */
+        min-height: 70px;          /* Минимальная высота для визуальности */
+        border-radius: var(--radius-md);
+    }
+
+    /* Подпись "Доход:" / "Расход:" */
+    .stat-pill span {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--text-muted);
+        font-weight: 500;
+    }
+
+    /* Сумма — крупнее и заметнее */
+    .stat-pill strong {
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
+    /* 5. Главная вкладка: Капитал и Финансы за период */
     #total_balance {
         font-size: 26px;
     }
 
+    /* Подсчет за период (Корректное отображение на мобильных) */
     .summary-stats {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        padding: 12px 0;
         width: 100%;
-        display: grid;
-        grid-template-columns: 1fr 1fr; /* Помещаем Доходы и Расходы сеткой */
-        gap: 12px;
-        margin-top: 12px;
     }
 
-    .stat-card, 
-    .income-card, 
-    .expense-card,
-    .stat-pill {
-        min-height: 80px; 
-        padding: 12px 16px; 
+    .stat-box {
         display: flex;
         flex-direction: column;
-        justify-content: center; /* Центрирование по вертикали */
-        align-items: center;     /* Центрирование по горизонтали */
-        border-radius: var(--radius-md);
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
         flex: 1;
-        box-sizing: border-box;
-    }
-
-    /* Сброс лишних внешних отступов у текста внутри карточек доходов/расходов */
-    .stat-card *,
-    .income-card *,
-    .expense-card *,
-    .stat-pill * {
-        margin: 0;
-        padding: 0;
-        line-height: 1.2;
-    }
-
-    .stat-value {
-        font-size: 18px;
-        font-weight: 700;
-        margin-top: 6px !important;
     }
 
     .stat-label {
-        font-size: 12px;
-        opacity: 0.8;
+        font-size: 11px;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        letter-spacing: 0.05em;
+    }
+
+    .stat-value {
+        font-size: 16px;
+        font-weight: 700;
+        word-break: break-all;
+        text-align: center;
+    }
+
+    .stat-divider {
+        display: block;
+        width: 1px;
+        height: 36px;
+        background-color: var(--border);
+        flex-shrink: 0;
     }
 
     .accounts-grid {
         grid-template-columns: 1fr;
     }
 
-    /* 6. Таблица транзакций (Скролл по горизонтали) */
+    /* 6. Таблица транзакций (Стиль сохранен без изменений) */
     .table-card {
         width: 100%;
         overflow-x: auto;
@@ -1166,11 +1174,11 @@ tr:hover td {
     }
 
     th, td {
-        padding: 10px 8px;
-        font-size: 12px;
+        padding: 14px 16px;
+        font-size: 14px;
     }
 
-    /* 7. Настройки и профиль */
+    /* 7. Настройки */
     .settings-item {
         flex-direction: column;
         align-items: flex-start;
@@ -1183,7 +1191,7 @@ tr:hover td {
         max-width: 100%;
     }
 
-    /* 8. Модальные окна и защита от экранной клавиатуры */
+    /* 8. Модальные окна */
     .modal {
         width: calc(100% - 24px);
         max-height: 85vh;
