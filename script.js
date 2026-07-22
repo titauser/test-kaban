@@ -60,9 +60,7 @@ let accounts = localStorage.getItem('kaban_accounts')
     ? JSON.parse(localStorage.getItem('kaban_accounts'))
     : [
         { id: 0, name: "Удалено", isArchived: true },
-        { id: 1, name: "Т-Банк", type: "Карта", currency: "RUB", visible: true, isArchived: false },
-        { id: 2, name: "Альфа Банк", type: "Кредитка", currency: "RUB", visible: true, isArchived: false },
-        { id: 3, name: "Наличные", type: "Кеш", currency: "RUB", visible: true, isArchived: false }
+        { id: 1, name: "Основной счет", type: "Карта", currency: "RUB", visible: true, isArchived: false }
     ];
 
 let categories = localStorage.getItem("kaban_categories")
