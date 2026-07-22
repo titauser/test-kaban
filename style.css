@@ -548,6 +548,16 @@ main {
    7. ТАБЛИЦА ИСТОРИИ
    ============================================================ */
 
+#transaction-non {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+    font-size: 15px;
+    font-weight: 500;
+    width: 100%;
+    box-sizing: border-box;
+}
+
 .table-card {
     padding: 0;
     overflow: hidden;
